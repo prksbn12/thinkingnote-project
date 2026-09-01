@@ -966,6 +966,12 @@ input:not(:disabled):not([type="search"]):focus {
     }
 }
 
+@media (max-width: 768px) {
+    .tool-btn-wrap .tool-btn-inner .tool-opt-btn-wrap {
+        border-right: none;
+    }
+}
+
 @media (max-width: 480px) {
     .modal .modal-content {
         width: var(--full-mobile-size);

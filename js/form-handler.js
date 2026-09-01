@@ -137,6 +137,42 @@ export function nicknameHintRules(extra = {}) {
     };
 }
 
+export function isSetDirty() {
+    const snap = app.setSnapshot;
+    if (!snap) return false;
+
+    if (normalizeThemeId(getActiveThemeId()) !== normalizeThemeId(snap.theme)) return true;
+    if (normalizeLangId(getActiveLangId()) !== normalizeLangId(snap.lang)) return true;
+
+    const isGuest = $('#set-guest')?.classList.contains('on');
+    if (!isGuest) {
+        const noti = getCheckboxValue(byId('set-noti-slide-input'));
+        if (noti !== (snap.noti ?? true)) return true;
+    }
+
+    if (!$('#set-member')?.classList.contains('on')) return false;
+
+    const img = $('#set-member-profile-img img')?.src;
+    if (img && img !== snap.img) return true;
+
+    const nickname = $('#set-member-nickname-input')?.value ?? '';
+    if (isValidNickname(nickname) && nickname !== (snap.nickname ?? '')) return true;
+
+    const email = normalizeEmail($('#set-member-email-input')?.value ?? '');
+    const auth = $('#set-member-auth-input')?.value ?? '';
+    if (isValidEmail(email) && email !== (snap.email ?? '') && isValidAuth(auth)) return true;
+
+    const pw = $('#set-member-pw-input')?.value ?? '';
+    const confirm = $('#set-member-confirm-input')?.value ?? '';
+    if (isValidPw(pw) && pw !== (snap.pw ?? '') && confirm === pw) return true;
+
+    return false;
+}
+
+export function syncSetCompleteBtn() {
+    setButtonEnabled($('#set-complete-btn'), isSetDirty());
+}
+
 export function captureSetSnapshot() {
     syncSetMemberEmailFieldTrim();
     app.setSnapshot = {
@@ -322,7 +358,7 @@ export function clearSetMemberDependentInput(input) {
     if (!input?.value) return;
     input.value = '';
     clearSetMemberInputHint(input);
-    setButtonEnabled($('#set-complete-btn'), false);
+    syncSetCompleteBtn();
 }
 
 export function clearSetMemberAuthOnEmailChange() {

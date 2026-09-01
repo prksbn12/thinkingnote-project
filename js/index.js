@@ -56,6 +56,7 @@ import {
   applyPersistedSettings,
   persistSettingsFromDom,
   syncNotiControl,
+  syncSetCompleteBtn,
   initMarkInputGroups,
   initSlideCheckGroups,
   openAuth,
@@ -1377,14 +1378,12 @@ function initDropdowns() {
                 if (group.id === 'set-theme-dropdown-btn-wrap') {
                     const themeId = normalizeThemeId(btn.id);
                     setTheme(themeId, { updateLabel: false });
-                    const complete = $('#set-complete-btn');
-                    setButtonEnabled(complete, normalizeThemeId(app.setSnapshot?.theme) !== themeId);
+                    syncSetCompleteBtn();
                 }
                 if (group.id === 'set-lang-dropdown-btn-wrap') {
                     const langId = normalizeLangId(btn.id);
                     setLang(langId, { updateLabel: false });
-                    const complete = $('#set-complete-btn');
-                    setButtonEnabled(complete, normalizeLangId(app.setSnapshot?.lang) !== langId);
+                    syncSetCompleteBtn();
                 }
             });
         });
@@ -1413,9 +1412,8 @@ function initSettings() {
     const setMemberProfileImgInput = $('#set-member-profile-img-input');
     blocks.handleImageInput(setMemberProfileImgInput, (src) => {
         const img = $('#set-member-profile-img img');
-        const prev = img?.src;
         if (img) img.src = src;
-        setButtonEnabled($('#set-complete-btn'), prev !== src);
+        syncSetCompleteBtn();
     });
 
     bindInputHints(
@@ -1423,10 +1421,8 @@ function initSettings() {
         $('#set-member-nickname-input-txt'),
         nicknameHintRules({
             isUnchanged: (v) => v === (app.setSnapshot?.nickname ?? ''),
-            onChange(ok) {
-                const prev = app.setSnapshot?.nickname ?? '';
-                const value = $('#set-member-nickname-input')?.value ?? '';
-                setButtonEnabled($('#set-complete-btn'), ok && value !== prev);
+            onChange() {
+                syncSetCompleteBtn();
             },
         })
     );
@@ -1439,6 +1435,7 @@ function initSettings() {
             onChange() {
                 clearSetMemberAuthOnEmailChange();
                 syncSetMemberAuthFromEmail(false);
+                syncSetCompleteBtn();
             },
         })
     );
@@ -1447,8 +1444,8 @@ function initSettings() {
         $('#set-member-auth-input'),
         $('#set-member-auth-input')?.parentElement?.querySelector('.auth-input-txt'),
         authHintRules({
-            onChange(ok) {
-                setButtonEnabled($('#set-complete-btn'), ok);
+            onChange() {
+                syncSetCompleteBtn();
             },
         })
     );
@@ -1461,6 +1458,7 @@ function initSettings() {
             onChange() {
                 clearSetMemberConfirmOnPwChange();
                 syncSetMemberConfirmFromPw(false);
+                syncSetCompleteBtn();
             },
         })
     );
@@ -1469,8 +1467,8 @@ function initSettings() {
         $('#set-member-confirm-input'),
         $('#set-member-confirm-input')?.parentElement?.querySelector('.confirm-input-txt'),
         confirmHintRules(() => $('#set-member-pw-input'), {
-            onChange(ok) {
-                setButtonEnabled($('#set-complete-btn'), ok);
+            onChange() {
+                syncSetCompleteBtn();
             },
         })
     );
@@ -1482,8 +1480,7 @@ function initSettings() {
 
     byId('set-noti-slide-input')?.addEventListener('change', function () {
         if (this.disabled) return;
-        const prev = app.setSnapshot?.noti ?? true;
-        setButtonEnabled($('#set-complete-btn'), getCheckboxValue(this) !== prev);
+        syncSetCompleteBtn();
     });
 
     toggleClass($('#set-guest'), 'on', true);

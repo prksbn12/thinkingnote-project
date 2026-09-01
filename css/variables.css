@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+:root {
+    --xxxs-size: 0.25rem;
+    --xxs-size: 0.5rem;
+    --xs-size: 0.75rem;
+    --s-size: 1rem;
+    --l-size: 1.5rem;
+    --xl-size: 2.25rem;
+    --xxl-size: 4.5rem;
+    --xxxl-size: 5rem;
+
+    --btn-size: 2rem;
+    --img-size: 6rem;
+
+    --border-width: 1px;
+    --border-radius: 999rem;
+
+    --l-full-size: calc(100% - 15rem);
+    --s-full-size: calc(100% - 10rem);
+    --l-partial-size: 25rem;
+    --s-partial-size: 20rem;
+
+    --full-mobile-size: calc(100% - 3rem);
+    --partial-mobile-size: calc(100% - 1.5rem);
+
+    --xxs-color: #ffffff;
+    --xs-color: #f2f2f2;
+    --s-color: #bfbfbf;
+    --l-color: #404040;
+    --xl-color: #0d0d0d;
+    --xxl-color: #000000;
+
+    --main-point-color: #ffa500;
+    --sub-point-color: #ff8c00;
+
+    --red-color: color-mix(in srgb, #ff0000, #000000 5%);
+    --orange-color: color-mix(in srgb, #ff8000, #000000 5%);
+    --green-color: color-mix(in srgb, #008000, #000000 5%);
+    --blue-color: color-mix(in srgb, #0000ff, #000000 5%);
+
+    --s-rgba-color: rgba(0, 0, 0, 0.15);
+    --l-rgba-color: rgba(0, 0, 0, 0.35);
+}
+
+:root .logo-img .light-logo {
+    display: none;
+}
+
+:root .logo-img .dark-logo {
+    display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+        --xxs-color: #000000;
+        --xs-color: #0d0d0d;
+        --s-color: #404040;
+        --l-color: #bfbfbf;
+        --xl-color: #f2f2f2;
+        --xxl-color: #ffffff;
+
+        --main-point-color: #ff8c00;
+        --sub-point-color: #ffa500;
+
+        --red-color: color-mix(in srgb, #ff0000, #ffffff 35%);
+        --orange-color: color-mix(in srgb, #ff8000, #ffffff 35%);
+        --green-color: color-mix(in srgb, #008000, #ffffff 35%);
+        --blue-color: color-mix(in srgb, #0000ff, #ffffff 35%);
+
+        --s-rgba-color: rgba(0, 0, 0, 0.35);
+        --l-rgba-color: rgba(0, 0, 0, 0.55);
+    }
+
+    :root:not(.light) .logo-img .light-logo {
+        display: block;
+    }
+
+    :root:not(.light) .logo-img .dark-logo {
+        display: none;
+    }
+}
+
+:root.light {
+    --xxs-color: #ffffff;
+    --xs-color: #f2f2f2;
+    --s-color: #bfbfbf;
+    --l-color: #404040;
+    --xl-color: #0d0d0d;
+    --xxl-color: #000000;
+
+    --main-point-color: #ffa500;
+    --sub-point-color: #ff8c00;
+
+    --red-color: color-mix(in srgb, #ff0000, #000000 5%);
+    --orange-color: color-mix(in srgb, #ff8000, #000000 5%);
+    --green-color: color-mix(in srgb, #008000, #000000 5%);
+    --blue-color: color-mix(in srgb, #0000ff, #000000 5%);
+
+    --s-rgba-color: rgba(0, 0, 0, 0.15);
+    --l-rgba-color: rgba(0, 0, 0, 0.35);
+}
+
+:root.light .logo-img .light-logo {
+    display: none;
+}
+
+:root.light .logo-img .dark-logo {
+    display: block;
+}
+
+:root.dark {
+    --xxs-color: #000000;
+    --xs-color: #0d0d0d;
+    --s-color: #404040;
+    --l-color: #bfbfbf;
+    --xl-color: #f2f2f2;
+    --xxl-color: #ffffff;
+
+    --main-point-color: #ff8c00;
+    --sub-point-color: #ffa500;
+
+    --red-color: color-mix(in srgb, #ff0000, #ffffff 35%);
+    --orange-color: color-mix(in srgb, #ff8000, #ffffff 35%);
+    --green-color: color-mix(in srgb, #008000, #ffffff 35%);
+    --blue-color: color-mix(in srgb, #0000ff, #ffffff 35%);
+
+    --s-rgba-color: rgba(0, 0, 0, 0.35);
+    --l-rgba-color: rgba(0, 0, 0, 0.55);
+}
+
+:root.dark .logo-img .light-logo {
+    display: block;
+}
+
+:root.dark .logo-img .dark-logo {
+    display: none;
+}

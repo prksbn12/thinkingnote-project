@@ -101,16 +101,7 @@ export const WELCOME_HTML = `
 <div><br></div>
 <div>텍스트만으로 부족한 내용을 보완하기 위해 이미지를 추가해 보세요.<br>텍스트와 이미지를 적절히 배치하여 생각의 흐름을 입체적으로 시각화할 수 있어요.</div>
 <div><br></div>
-<div class="image"><button type="button" class="image-btn icon-btn"><span class="fullscreen-icon">fullscreen</span><span class="exit-icon">fullscreen_exit</span></button><img src="upload/sample.png" alt=""></div>
-<div><br></div>
-<div><br></div>
-<div class="h2-size bold">7. 다른 작업물</div>
-<div><br></div>
-<div>제작자의 다른 작업물을 확인해 보세요.</div>
-<div><br></div>
-<div class="image"><button type="button" class="image-btn icon-btn"><span class="fullscreen-icon">fullscreen</span><span class="exit-icon">fullscreen_exit</span></button><img src="upload/portfolio.png" alt=""></div>
-<div><br></div>
-<div><a href="upload/portfolio.pdf" target="_blank" class="link">portfolio.pdf</a></div>`;
+<div class="image"><button type="button" class="image-btn icon-btn"><span class="fullscreen-icon">fullscreen</span><span class="exit-icon">fullscreen_exit</span></button><img src="img/sample.png" alt=""></div>`;
 
 export const PAGE_AREA_ITEM_SEL = '#sidebar-all-page-area > div, #sidebar-delete-page-area > div';
 
